@@ -1,0 +1,63 @@
+// Program: Ch. 8B. Arrays
+// Programmer: Heidi Mobley
+// Date: 04/23/2020
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+// main method
+int main()
+{
+	// declare vars
+	const int ARRAY_SIZE = 5;
+	int indexCounter;
+	string students[ARRAY_SIZE];
+	ofstream outfileStudents;
+
+
+	//output program purpose and gather input from user
+	cout << "This program stores 5 student names, and then prints the names to the screen.\n" << endl;
+	
+	// Open file to store names
+	outfileStudents.open("students.txt", ios::app);
+	if (!outfileStudents)
+	{
+		cout << "Error opening file! CALL ADMIN!!";
+		system("pause");
+		exit(1);
+	} // end if
+
+
+	indexCounter = 0;
+	int studentNum = 1;
+	while (indexCounter < ARRAY_SIZE)
+	{
+		cout << "Please enter name for student " << studentNum << ": ";  // request student name from user
+		cin >> students[indexCounter]; // store name in array
+
+		outfileStudents << students[indexCounter] << endl;  // store name in txt file
+		cout << "\n";
+
+		indexCounter++;  // increment counter
+		studentNum++;  //incrememnt student number
+	} // end while
+
+	system("cls");  //clear screen
+
+	//print student names from array
+	cout << "Students" << endl;
+	cout << "--------" << endl;
+	// loop through array to print to screen
+	for (int i = 0; i < ARRAY_SIZE; i++)
+	{
+		cout << students[i] << "\n" << endl;
+
+	} //end for
+
+	// Close students file
+	outfileStudents.close();
+
+	system("pause");
+	return 0;
+} // end main method
